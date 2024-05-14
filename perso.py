@@ -1,4 +1,6 @@
 import pygame
+import Score
+import Score.score
 from projectile import Projectile
 class Player(pygame.sprite.Sprite):
     def __init__(self):
@@ -12,13 +14,12 @@ class Player(pygame.sprite.Sprite):
         # le self velocity correspond a la vitesse de deplacement en pixel
         self.image = pygame.image.load('assets/soldat.png')
         self.rect = self.image.get_rect()
+        self.score = 0
+        self.name = "player"
 
 
     def launch_projectile(self):
         self.all_projectiles.add(Projectile(self))
-
-
-
 
     def move_right(self):
         self.rect.x+= self.velocity
@@ -31,3 +32,5 @@ class Player(pygame.sprite.Sprite):
 
     def move_down(self):
         self.rect.y += self.velocity
+    def kill():
+        Score.score.ajouterScore(self.name, self.score)
