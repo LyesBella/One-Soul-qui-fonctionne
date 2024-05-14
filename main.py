@@ -2,9 +2,6 @@ import pygame
 from game import Game
 pygame.init()
 
-
-
-
 #info fenetre
 pygame.display.set_caption("One Soul",'playeridle.png')
 screen=pygame.display.set_mode((1280,720))
@@ -12,7 +9,7 @@ screen=pygame.display.set_mode((1280,720))
 running =True
 background=pygame.image.load('assets/Nuit.jpg')
 
-game= Game()
+game = Game()
 
 #laisser la fenetre ouverte
 while running:
