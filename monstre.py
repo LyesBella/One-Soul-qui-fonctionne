@@ -1,3 +1,4 @@
+import pygame
 import main
 class Monstre():
     def __init__(self,coordonnees: tuple) -> None:
@@ -8,7 +9,7 @@ class Monstre():
         self.all_projectiles = pygame.sprite.Group()
         self.velocity = 0.2
         # le self velocity correspond a la vitesse de deplacement en pixel
-        self.image = pygame.image.load('assets/monstre.png')
+        self.image = pygame.image.load('assets/Goblin_Epee.png')
         self.rect = self.image.get_rect()
         # On ajoute le monstre à la liste des monstres
         main.game.monsters.append(self)
