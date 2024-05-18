@@ -21,16 +21,15 @@ class Player(pygame.sprite.Sprite):
     def launch_projectile(self):
         self.all_projectiles.add(Projectile(self))
 
-    def move_right(self):
-        self.rect.x+= self.velocity
+    def move(self,direction,speed):
+        if direction == "right":
+            self.rect.x+= speed
+        elif direction == "left":
+            self.rect.x-= speed
+        elif direction == "up":
+            self.rect.y -= speed
+        elif direction == "down":
+            self.rect.y += speed
 
-    def move_left(self):
-        self.rect.x-= self.velocity
-
-    def move_up(self):
-        self.rect.y -= self.velocity
-
-    def move_down(self):
-        self.rect.y += self.velocity
     def kill():
         Score.score.ajouterScore(self.name, self.score)
