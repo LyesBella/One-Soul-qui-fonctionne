@@ -1,7 +1,7 @@
 import pygame
-import main
+import game
 class Monstre():
-    def __init__(self,coordonnees: tuple) -> None:
+    def __init__(self,coordonnees: tuple,fenetre: pygame.Surface) -> None:
         self.coordonnees = coordonnees
         self.health = 250
         self.max_health = self.health
@@ -11,8 +11,9 @@ class Monstre():
         # le self velocity correspond a la vitesse de deplacement en pixel
         self.image = pygame.image.load('assets/Goblin_Epee.png')
         self.rect = self.image.get_rect()
+        fenetre.blit(self.image,coordonnees)
         # On ajoute le monstre à la liste des monstres
-        main.game.monsters.append(self)
+        game.Game.monsters.append(self)
     def gotoPlayer():
         player = main.game.player
         # position du joueur

@@ -1,5 +1,6 @@
 import pygame
 from game import Game
+from monstre import Monstre
 pygame.init()
 
 #info fenetre
@@ -21,18 +22,19 @@ while running:
     #rafraichir l'ecran de jeux
     pygame.display.flip()
     for event in pygame.event.get():
-       if event.type== pygame.QUIT:
-           running= False
-           pygame.quit()
-       elif event.type==pygame.KEYDOWN:
+        if event.type== pygame.QUIT:
+            running= False
+            pygame.quit()
+        elif event.type==pygame.KEYDOWN:
             game.pressed[event.key]= True
             if event.key == pygame.K_ESCAPE:
                 running= False
                 pygame.quit()
             if event.key == pygame.K_SPACE:
-                 game.player.launch_projectile()
-
-       elif event.type==pygame.KEYUP:
+                game.player.launch_projectile()
+            if event.key == pygame.K_r:
+                Monstre((game.player.rect.x,game.player.rect.y),screen)
+        elif event.type==pygame.KEYUP:
             game.pressed[event.key]= False
 
     if game.pressed.get(pygame.K_RIGHT):
