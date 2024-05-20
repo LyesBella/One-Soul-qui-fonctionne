@@ -17,24 +17,25 @@ while running:
 
     screen.blit(background, (0,0))
     screen.blit(game.player.image,(game.player.rect))
+    for monster in game.monsters:
+        screen.blit(monster.image,(monster.rect))
     game.player.all_projectiles.draw(screen)
 
     #rafraichir l'ecran de jeux
     pygame.display.flip()
     for event in pygame.event.get():
-        if event.type== pygame.QUIT:
+        if event.type== pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
             running= False
             pygame.quit()
-        elif event.type==pygame.KEYDOWN:
+
+        if event.type==pygame.KEYDOWN:
             game.pressed[event.key]= True
-            if event.key == pygame.K_ESCAPE:
-                running= False
-                pygame.quit()
             if event.key == pygame.K_SPACE:
                 game.player.launch_projectile()
             if event.key == pygame.K_r:
-                Monstre((game.player.rect.x,game.player.rect.y),screen)
-        elif event.type==pygame.KEYUP:
+                Monstre((game.player.rect),screen)
+
+        if event.type==pygame.KEYUP:
             game.pressed[event.key]= False
 
     if game.pressed.get(pygame.K_RIGHT):

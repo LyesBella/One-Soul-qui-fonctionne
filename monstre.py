@@ -11,7 +11,7 @@ class Monstre():
         # le self velocity correspond a la vitesse de deplacement en pixel
         self.image = pygame.image.load('assets/Goblin_Epee.png')
         self.rect = self.image.get_rect()
-        fenetre.blit(self.image,coordonnees)
+        self.rect = self.rect.move(self.coordonnees[0],self.coordonnees[1])
         # On ajoute le monstre à la liste des monstres
         game.Game.monsters.append(self)
     def gotoPlayer():
