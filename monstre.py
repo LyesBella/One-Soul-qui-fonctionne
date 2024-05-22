@@ -8,7 +8,8 @@ class Monstre():
         self.max_health = self.health
         self.attack = 25
         self.all_projectiles = pygame.sprite.Group()
-        self.velocity = 1
+        # Vitesse doit etre supérieur à 1 pour éviter les bugs
+        self.velocity = 2
         # le self velocity correspond a la vitesse de deplacement en pixel
         self.image = pygame.image.load('assets/Goblin_Epee.png')
         self.rect = self.image.get_rect()
@@ -34,4 +35,4 @@ class Monstre():
             direction_y = (direction_y / distance) * self.velocity
 
         # Mise à jour de la position du rectangle avec les valeurs entières
-        self.rect = self.rect.move(direction_x, direction_y)
+        self.rect.move_ip(direction_x, direction_y)

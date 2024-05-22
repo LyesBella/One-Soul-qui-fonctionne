@@ -10,7 +10,7 @@ class Player(pygame.sprite.Sprite):
         self.max_health = 250
         self.attack = 25
         self.all_projectiles = pygame.sprite.Group()
-        self.velocity = 2
+        self.velocity = 3
         # le self velocity correspond a la vitesse de deplacement en pixel
         self.image = pygame.image.load('assets/Joueur.png')
         self.rect = self.image.get_rect()
