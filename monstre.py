@@ -19,8 +19,9 @@ class Monstre():
         game.Game.monsters.append(self)
 
     def attack(self,player:game.Player):
-        if player.health >0:
+        if player.health > 0 and game.time() - lastAttack > self.attack_speed:
             player.health -= self.attack
+            lastAttack = game.time()
 
     def gotoPlayer(self,game:game.Game):
         player = game.player

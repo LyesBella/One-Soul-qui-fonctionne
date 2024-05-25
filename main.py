@@ -30,11 +30,13 @@ while running:
     for monster in game.monsters:
         # On vérifie les collisions
         if (game.player.rect.colliderect(monster.rect)):
+            # Attaque le joueur
             monster.attack(game.player)
+        # Va vers le joueur
         monster.gotoPlayer(game)
         screen.blit(monster.image,(monster.rect))
 
-    #rafraichir l'ecran de jeux
+    # Rafraichir l'ecran de jeux
     pygame.display.flip()
     for event in pygame.event.get():
         if event.type== pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
@@ -47,9 +49,11 @@ while running:
                 game.player.launch_projectile()
             if event.key == pygame.K_r:
                 Monstre((0,0),screen)
+        # Permet de check si une touche est toujours enfoncé
         if event.type==pygame.KEYUP:
             game.pressed[event.key]= False
 
+    # Bouger le joueur en fonction des contrôles
     if game.pressed.get(pygame.K_RIGHT):
         game.player.move("right",game.player.velocity)
     if game.pressed.get(pygame.K_LEFT):
