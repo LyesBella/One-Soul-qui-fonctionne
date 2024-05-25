@@ -1,5 +1,6 @@
 import pygame
 import math
+import perso
 import game
 class Monstre():
     def __init__(self,coordonnees: tuple,fenetre: pygame.Surface) -> None:
@@ -8,6 +9,7 @@ class Monstre():
         self.max_health = self.health
         self.attack = 25
         self.attack_speed = 0.5
+        self.lastAttack = 0
         self.all_projectiles = pygame.sprite.Group()
         # Vitesse doit etre supérieur à 1 pour éviter les bugs
         self.velocity = 2
@@ -18,7 +20,7 @@ class Monstre():
         # On ajoute le monstre à la liste des monstres
         game.Game.monsters.append(self)
 
-    def attack(self,player:game.Player):
+    def attack(self,player:perso.Player):
         if player.health > 0 and game.time() - lastAttack > self.attack_speed:
             player.health -= self.attack
             lastAttack = game.time()

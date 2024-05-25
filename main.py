@@ -8,7 +8,6 @@ pygame.init()
 #info fenetre
 pygame.display.set_caption("One Soul",'Goblin_Epee.png')
 screen=pygame.display.set_mode((1280,700))
-
 running =True
 
 # Image de fond
