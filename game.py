@@ -1,4 +1,3 @@
-import pygame
 from perso import Player
 import time
 

@@ -1,6 +1,4 @@
-import pygame,game
-import Score
-import Score.score
+import pygame,Score
 from projectile import Projectile
 class Player(pygame.sprite.Sprite):
     def __init__(self):
@@ -12,6 +10,7 @@ class Player(pygame.sprite.Sprite):
         self.attack = 25
         self.velocity = 4
         self.score = 0
+        self.isDead = False
         # le self velocity correspond a la vitesse de deplacement en pixel
         self.image = pygame.image.load('assets/Joueur.png')
         self.rect = self.image.get_rect()
@@ -29,6 +28,7 @@ class Player(pygame.sprite.Sprite):
         elif direction == "down":
             self.rect.y += speed
 
-    def onDeath(self,game:game.Game):
+    def onDeath(self,game):
         game.monsters.clear()
         Score.score.ajouterScore(self.name, self.score)
+        self.isDead = True

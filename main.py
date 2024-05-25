@@ -1,6 +1,4 @@
-import pygame
-import Score.score
-import time
+import pygame,Score.score,time
 from game import Game
 from monstre import Monstre
 pygame.init()
@@ -34,7 +32,7 @@ while running:
         if (game.player.rect.colliderect(monster.rect)):
             # Attaque le joueur
             monster.attack(game.player,game)
-    if (game.player.health <= 0):
+    if (game.player.health <= 0 and game.player.isDead == False):
         game.player.onDeath(game)
 
 
@@ -50,7 +48,7 @@ while running:
             if event.key == pygame.K_SPACE:
                 game.player.launch_projectile()
             if event.key == pygame.K_r:
-                Monstre((0,0),screen)
+                Monstre((0,0),screen,game)
         # Permet de check si une touche est toujours enfoncé
         if event.type==pygame.KEYUP:
             game.pressed[event.key]= False

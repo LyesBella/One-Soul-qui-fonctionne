@@ -1,6 +1,6 @@
 import pygame,math,perso,game
 class Monstre():
-    def __init__(self,coordonnees: tuple,fenetre: pygame.Surface) -> None:
+    def __init__(self,coordonnees: tuple,fenetre: pygame.Surface,game:game.Game) -> None:
         self.coordonnees = coordonnees
         self.health = 250
         self.max_health = self.health
@@ -16,7 +16,7 @@ class Monstre():
         self.rect = self.image.get_rect()
         self.rect = self.rect.move(self.coordonnees[0],self.coordonnees[1])
         # On ajoute le monstre à la liste des monstres
-        game.Game.monsters.append(self)
+        game.monsters.append(self)
 
     def attack(self,player:perso.Player,game:game.Game):
         if player.health > 0 and (game.time - self.lastAttack) > self.attack_speed:
