@@ -2,6 +2,7 @@ import pygame,game
 import Score
 import Score.score
 from projectile import Projectile
+
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
