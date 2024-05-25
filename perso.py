@@ -1,4 +1,4 @@
-import pygame
+import pygame,game
 import Score
 import Score.score
 from projectile import Projectile
@@ -29,5 +29,6 @@ class Player(pygame.sprite.Sprite):
         elif direction == "down":
             self.rect.y += speed
 
-    def kill(self):
+    def onDeath(self,game:game.Game):
+        game.monsters.clear()
         Score.score.ajouterScore(self.name, self.score)

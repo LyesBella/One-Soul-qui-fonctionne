@@ -7,6 +7,7 @@ class Monstre():
         self.degats = 3
         self.attack_speed = 0.5
         self.lastAttack = 0
+        self.score = 50
         self.all_projectiles = pygame.sprite.Group()
         # Vitesse doit etre supérieur à 1 pour éviter les bugs
         self.velocity = 3
@@ -21,9 +22,10 @@ class Monstre():
         if player.health > 0 and (game.time - self.lastAttack) > self.attack_speed:
             player.health -= self.degats
             self.lastAttack = game.time
-        else: 
-            print("Le monstre ne peut pas attaquer")
 
+    def onDeath(self,player:perso.Player,game:game.Game):
+        game.monsters.remove(self)
+        player.score += self.score
     def gotoPlayer(self,game:game.Game):
         player = game.player
         # Position du joueur

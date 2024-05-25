@@ -34,6 +34,8 @@ while running:
         if (game.player.rect.colliderect(monster.rect)):
             # Attaque le joueur
             monster.attack(game.player,game)
+    if (game.player.health <= 0):
+        game.player.onDeath(game)
 
 
     # Rafraichir l'ecran de jeux
