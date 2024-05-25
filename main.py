@@ -8,21 +8,25 @@ pygame.display.set_caption("One Soul",'Goblin_Epee.png')
 screen=pygame.display.set_mode((1280,700))
 
 running =True
-background=pygame.image.load('assets/background.png')
 
+# Image de fond
+background=pygame.image.load('assets/background.png')
+# Instance du jeu
 game = Game()
 
-#laisser la fenetre ouverte
+#Permet de garder la fenetre ouverte
 while running:
-
+    # Met à jour les images
     screen.blit(background, (0,0))
     screen.blit(game.player.image,(game.player.rect))
+    game.player.all_projectiles.draw(screen)
+
     for monster in game.monsters:
+        # On vérifie les collisions
         if (game.player.rect.colliderect(monster.rect)):
-            print("touché")
+            monster.attack(game.player)
         monster.gotoPlayer(game)
         screen.blit(monster.image,(monster.rect))
-    game.player.all_projectiles.draw(screen)
 
     #rafraichir l'ecran de jeux
     pygame.display.flip()
@@ -37,9 +41,6 @@ while running:
                 game.player.launch_projectile()
             if event.key == pygame.K_r:
                 Monstre((0,0),screen)
-
-        
-
         if event.type==pygame.KEYUP:
             game.pressed[event.key]= False
 

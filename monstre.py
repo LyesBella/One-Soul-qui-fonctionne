@@ -7,6 +7,7 @@ class Monstre():
         self.health = 250
         self.max_health = self.health
         self.attack = 25
+        self.attack_speed = 0.5
         self.all_projectiles = pygame.sprite.Group()
         # Vitesse doit etre supérieur à 1 pour éviter les bugs
         self.velocity = 2
@@ -16,6 +17,11 @@ class Monstre():
         self.rect = self.rect.move(self.coordonnees[0],self.coordonnees[1])
         # On ajoute le monstre à la liste des monstres
         game.Game.monsters.append(self)
+
+    def attack(self,player:game.Player):
+        if player.health >0:
+            player.health -= self.attack
+
     def gotoPlayer(self,game:game.Game):
         player = game.player
         # Position du joueur

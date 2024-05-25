@@ -6,18 +6,16 @@ class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
         # la ligne au dessus permet de declarer le personnage comme un sprite
+        self.name = "player"
         self.health = 250
         self.max_health = 250
         self.attack = 25
-        self.all_projectiles = pygame.sprite.Group()
         self.velocity = 3
+        self.score = 0
         # le self velocity correspond a la vitesse de deplacement en pixel
         self.image = pygame.image.load('assets/Joueur.png')
         self.rect = self.image.get_rect()
-        self.score = 0
-        self.name = "player"
-
-
+        self.all_projectiles = pygame.sprite.Group()
     def launch_projectile(self):
         self.all_projectiles.add(Projectile(self))
 
