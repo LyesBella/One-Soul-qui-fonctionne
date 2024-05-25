@@ -1,4 +1,6 @@
 import pygame
+import Score.score
+import time
 from game import Game
 from monstre import Monstre
 pygame.init()
@@ -13,9 +15,13 @@ running =True
 background=pygame.image.load('assets/background.png')
 # Instance du jeu
 game = Game()
-
+# On initialise le score
+Score.score.initialisationFichier()
 #Permet de garder la fenetre ouverte
 while running:
+    # Met à jour le temps pour le jeu
+    game.deltaTime =  time.time() - game.time
+    game.time = time.time()
     # Met à jour les images
     screen.blit(background, (0,0))
     screen.blit(game.player.image,(game.player.rect))
