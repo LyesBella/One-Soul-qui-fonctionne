@@ -10,7 +10,7 @@ class Player(pygame.sprite.Sprite):
         self.health = 250
         self.max_health = 250
         self.attack = 25
-        self.velocity = 3
+        self.velocity = 4
         self.score = 0
         # le self velocity correspond a la vitesse de deplacement en pixel
         self.image = pygame.image.load('assets/Joueur.png')
@@ -29,5 +29,5 @@ class Player(pygame.sprite.Sprite):
         elif direction == "down":
             self.rect.y += speed
 
-    def kill():
+    def kill(self):
         Score.score.ajouterScore(self.name, self.score)

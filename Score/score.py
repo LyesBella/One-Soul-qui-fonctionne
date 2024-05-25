@@ -1,7 +1,7 @@
 import os
 import csv
 
-nomFichier = "score.csv"
+nomFichier = "score/score.csv"
 def initialisationFichier():
     if os.path.exists(nomFichier) == False:
         try:

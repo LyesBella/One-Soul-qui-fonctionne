@@ -1,18 +1,15 @@
-import pygame
-import math
-import perso
-import game
+import pygame,math,perso,game
 class Monstre():
     def __init__(self,coordonnees: tuple,fenetre: pygame.Surface) -> None:
         self.coordonnees = coordonnees
         self.health = 250
         self.max_health = self.health
-        self.attack = 25
+        self.degats = 3
         self.attack_speed = 0.5
         self.lastAttack = 0
         self.all_projectiles = pygame.sprite.Group()
         # Vitesse doit etre supérieur à 1 pour éviter les bugs
-        self.velocity = 2
+        self.velocity = 3
         # le self velocity correspond a la vitesse de deplacement en pixel
         self.image = pygame.image.load('assets/Goblin_Epee.png')
         self.rect = self.image.get_rect()
@@ -20,10 +17,12 @@ class Monstre():
         # On ajoute le monstre à la liste des monstres
         game.Game.monsters.append(self)
 
-    def attack(self,player:perso.Player):
-        if player.health > 0 and game.time() - lastAttack > self.attack_speed:
-            player.health -= self.attack
-            lastAttack = game.time()
+    def attack(self,player:perso.Player,game:game.Game):
+        if player.health > 0 and (game.time - self.lastAttack) > self.attack_speed:
+            player.health -= self.degats
+            self.lastAttack = game.time
+        else: 
+            print("Le monstre ne peut pas attaquer")
 
     def gotoPlayer(self,game:game.Game):
         player = game.player

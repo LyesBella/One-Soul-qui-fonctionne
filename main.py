@@ -27,13 +27,14 @@ while running:
     game.player.all_projectiles.draw(screen)
 
     for monster in game.monsters:
+        screen.blit(monster.image,(monster.rect))
+        # Va vers le joueur
+        monster.gotoPlayer(game)
         # On vérifie les collisions
         if (game.player.rect.colliderect(monster.rect)):
             # Attaque le joueur
-            monster.attack(game.player)
-        # Va vers le joueur
-        monster.gotoPlayer(game)
-        screen.blit(monster.image,(monster.rect))
+            monster.attack(game.player,game)
+
 
     # Rafraichir l'ecran de jeux
     pygame.display.flip()
