@@ -20,19 +20,15 @@ class Monstre():
         player = game.player
         # Position du joueur
         objectif = (player.rect.x, player.rect.y)
-
         # Calculer le vecteur de direction
         direction_x = objectif[0] - self.rect.x
         direction_y = objectif[1] - self.rect.y
-
         # Calculer la distance
         distance = math.sqrt(direction_x ** 2 + direction_y ** 2)
-
         # Si la distance est plus petite que la vitesse, se rendre directement à l'objectif
         if distance != 0:
             # Normaliser le vecteur de direction et le multiplier par la vitesse
             direction_x = (direction_x / distance) * self.velocity
             direction_y = (direction_y / distance) * self.velocity
-
         # Mise à jour de la position du rectangle avec les valeurs entières
         self.rect.move_ip(direction_x, direction_y)

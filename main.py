@@ -18,6 +18,8 @@ while running:
     screen.blit(background, (0,0))
     screen.blit(game.player.image,(game.player.rect))
     for monster in game.monsters:
+        if (game.player.rect.colliderect(monster.rect)):
+            print("touché")
         monster.gotoPlayer(game)
         screen.blit(monster.image,(monster.rect))
     game.player.all_projectiles.draw(screen)
@@ -35,6 +37,8 @@ while running:
                 game.player.launch_projectile()
             if event.key == pygame.K_r:
                 Monstre((0,0),screen)
+
+        
 
         if event.type==pygame.KEYUP:
             game.pressed[event.key]= False
