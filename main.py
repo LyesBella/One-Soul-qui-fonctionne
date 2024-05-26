@@ -22,11 +22,6 @@ while running:
     # Met à jour le fond
     screen.blit(background, (0,0))
     screen.blit(game.player.image,(game.player.rect))
-
-    #fait bouger les projectiles
-    for projectile in game.player.all_projectiles:
-        projectile.move()
-
     game.player.all_projectiles.draw(screen)
 
     for monster in game.monsters:
