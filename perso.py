@@ -1,11 +1,8 @@
 import pygame
 from projectile import Projectile
-
 class Player(pygame.sprite.Sprite):
-    def __init__(self,game):
+    def __init__(self):
         super().__init__()
-        self.game=game
-
         # la ligne au dessus permet de declarer le personnage comme un sprite
         self.name = "player"
         self.health = 150
@@ -24,7 +21,6 @@ class Player(pygame.sprite.Sprite):
     def move(self,direction,speed):
         if direction == "right":
             self.rect.x+= speed
-
         elif direction == "left":
             self.rect.x-= speed
         elif direction == "up":
