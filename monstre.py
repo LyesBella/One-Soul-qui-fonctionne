@@ -18,10 +18,6 @@ class Monstre():
         # On ajoute le monstre à la liste des monstres
         game.monsters.append(self)
 
-    def damage(self, amount):
-        self.health -=amount
-
-
     def attack(self,player:perso.Player,game):
         if player.health > 0 and (game.time - self.lastAttack) > self.attack_speed:
             player.health -= self.degats
