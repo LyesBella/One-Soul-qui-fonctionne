@@ -1,3 +1,5 @@
+import pygame.sprite
+
 import Score.score
 from perso import Player
 import time,random,monstre,Score
@@ -10,7 +12,8 @@ class Game:
     gameDuration = startTime - time.time()
     def __init__(self):
         self.time = time.time()
-        self.player =Player()
+        self.perso=Player
+        self.all_monsters=pygame.sprite.Group()
         self.pressed={}
 
     def reset(self):
@@ -23,6 +26,7 @@ class Game:
         print("La partie a recommencée")
 
     def spawnMonster(self,fenetre):
+        self.all_monsters.add(monstre)
         cote = random.choice(["gauche","droite","bas","haut"])
         if cote == "gauche":
             monstre.Monstre((0,random.randint(0,700)),fenetre,self)
@@ -32,3 +36,6 @@ class Game:
             monstre.Monstre((random.randint(0,1280),0),fenetre,self)
         if cote == "bas":
             monstre.Monstre((random.randint(0,1280),700),fenetre,self)
+
+    def check_collision(self,sprite,group):
+        return pygame.sprite.spritecollide(sprite,group,False,pygame.sprite.collide_mask())
