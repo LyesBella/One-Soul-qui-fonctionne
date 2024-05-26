@@ -1,7 +1,6 @@
-import os
-import csv
+import os,csv
 
-nomFichier = "score/score.csv"
+nomFichier = "Score/score.csv"
 def initialisationFichier():
     if os.path.exists(nomFichier) == False:
         try:
@@ -13,23 +12,23 @@ def initialisationFichier():
     return True
 
 # à faire
-def ajouterScore(pseudo:str,score:int):
+def ajouterScore(pseudo:str,score:int,temps:int):
     try:
         with open(nomFichier, mode='a', newline='') as fichier_csv:
             writer = csv.writer(fichier_csv)
-            writer.writerow([pseudo, score])
+            writer.writerow([pseudo, score, temps])
         print("Ligne ajoutée avec succès.")
     except Exception as e:
         print(f"Une erreur s'est produite lors de l'ajout de la ligne : {str(e)}")
 def recupererScores():
-    scores = {}
+    scores = []
     try:
         with open(nomFichier, mode='r') as fichier_csv:
             lecteur = csv.reader(fichier_csv)
             next(lecteur)  # Skip header row if exists
             for row in lecteur:
-                nom, score = row
-                scores[nom] = int(score)
+                nom, score, temps = row
+                scores.append([nom, int(score), int(temps)])
         return scores
     except Exception as e:
         print(f"Une erreur s'est produite lors de la récupération des scores : {str(e)}")
