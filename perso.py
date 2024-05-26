@@ -1,12 +1,12 @@
-import pygame,Score
+import pygame
 from projectile import Projectile
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
         # la ligne au dessus permet de declarer le personnage comme un sprite
         self.name = "player"
-        self.health = 250
-        self.max_health = 250
+        self.health = 150
+        self.max_health = self.health 
         self.attack = 25
         self.velocity = 4
         self.score = 0
@@ -28,7 +28,5 @@ class Player(pygame.sprite.Sprite):
         elif direction == "down":
             self.rect.y += speed
 
-    def onDeath(self,game):
-        game.monsters.clear()
-        Score.score.ajouterScore(self.name, self.score)
+    def onDeath(self):
         self.isDead = True

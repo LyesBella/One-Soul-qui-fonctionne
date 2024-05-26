@@ -1,6 +1,5 @@
-import pygame,Score.score,time
+import pygame,Score.score,time,math
 from game import Game
-from monstre import Monstre
 pygame.init()
 
 #info fenetre
@@ -16,10 +15,11 @@ game = Game()
 Score.score.initialisationFichier()
 #Permet de garder la fenetre ouverte
 while running:
-    # Met à jour le temps pour le jeu
+    # Met à jour les différents temps pour le jeu
     game.deltaTime =  time.time() - game.time
     game.time = time.time()
-    # Met à jour les images
+    game.gameDuration = math.ceil(game.time - game.startTime)
+    # Met à jour le fond
     screen.blit(background, (0,0))
     screen.blit(game.player.image,(game.player.rect))
     game.player.all_projectiles.draw(screen)
@@ -30,11 +30,14 @@ while running:
         monster.gotoPlayer(game)
         # On vérifie les collisions
         if (game.player.rect.colliderect(monster.rect)):
-            # Attaque le joueur
             monster.attack(game.player,game)
+        # Est ce que le monstre est mort ?
+        if (monster.health <= 0):
+            monster.onDeath(game.player,game)
+            print(game.player.score) 
     if (game.player.health <= 0 and game.player.isDead == False):
-        game.player.onDeath(game)
-
+        game.player.onDeath()
+        game.reset()
 
     # Rafraichir l'ecran de jeux
     pygame.display.flip()
@@ -47,19 +50,23 @@ while running:
             game.pressed[event.key]= True
             if event.key == pygame.K_SPACE:
                 game.player.launch_projectile()
+
+            # A supprimer
+            if event.key == pygame.K_a:
+                game.reset()
             if event.key == pygame.K_r:
-                Monstre((0,0),screen,game)
+                game.spawnMonster(fenetre=screen)
         # Permet de check si une touche est toujours enfoncé
         if event.type==pygame.KEYUP:
             game.pressed[event.key]= False
 
     # Bouger le joueur en fonction des contrôles
-    if game.pressed.get(pygame.K_RIGHT):
+    if game.pressed.get(pygame.K_RIGHT) or game.pressed.get(pygame.K_d):
         game.player.move("right",game.player.velocity)
-    if game.pressed.get(pygame.K_LEFT):
+    if game.pressed.get(pygame.K_LEFT) or game.pressed.get(pygame.K_q):
         game.player.move("left",game.player.velocity)
-    if game.pressed.get(pygame.K_UP):
+    if game.pressed.get(pygame.K_UP) or game.pressed.get(pygame.K_z):
         game.player.move("up",game.player.velocity)
-    if game.pressed.get(pygame.K_DOWN):
+    if game.pressed.get(pygame.K_DOWN) or game.pressed.get(pygame.K_s):
         game.player.move("down",game.player.velocity)
 

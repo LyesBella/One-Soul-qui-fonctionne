@@ -1,11 +1,11 @@
-import pygame,math,perso,game
+import pygame,math,perso
 class Monstre():
-    def __init__(self,coordonnees: tuple,fenetre: pygame.Surface,game:game.Game) -> None:
+    def __init__(self,coordonnees: tuple,fenetre: pygame.Surface,game) -> None:
         self.coordonnees = coordonnees
         self.health = 250
         self.max_health = self.health
         self.degats = 3
-        self.attack_speed = 0.5
+        self.attack_speed = 1
         self.lastAttack = 0
         self.score = 50
         self.all_projectiles = pygame.sprite.Group()
@@ -18,15 +18,15 @@ class Monstre():
         # On ajoute le monstre à la liste des monstres
         game.monsters.append(self)
 
-    def attack(self,player:perso.Player,game:game.Game):
+    def attack(self,player:perso.Player,game):
         if player.health > 0 and (game.time - self.lastAttack) > self.attack_speed:
             player.health -= self.degats
             self.lastAttack = game.time
 
-    def onDeath(self,player:perso.Player,game:game.Game):
+    def onDeath(self,player:perso.Player,game):
         game.monsters.remove(self)
         player.score += self.score
-    def gotoPlayer(self,game:game.Game):
+    def gotoPlayer(self,game):
         player = game.player
         # Position du joueur
         objectif = (player.rect.x, player.rect.y)
