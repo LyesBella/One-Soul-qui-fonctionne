@@ -8,7 +8,7 @@ class Monstre():
         self.score = random.randint(50,75)
         self.all_projectiles = pygame.sprite.Group()
         # Vitesse doit etre supérieur à 1 pour éviter les bugs
-        self.velocity = random.randint(3,5)
+        self.velocity = random.randint(3,6)
         images = ["assets/bleu.png","assets/vert.png","assets/gris.png"]
         # le self velocity correspond a la vitesse de deplacement en pixel
         self.image = pygame.image.load(random.choice(images))

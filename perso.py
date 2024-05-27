@@ -14,6 +14,7 @@ class Player(pygame.sprite.Sprite):
         # le self velocity correspond a la vitesse de deplacement en pixel
         self.image = pygame.image.load('assets/Joueur.png')
         self.rect = self.image.get_rect()
+        self.rect.move_ip(620,350)
         self.all_projectiles = pygame.sprite.Group()
     def launch_projectile(self,game):
         Projectile(self,game)
