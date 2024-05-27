@@ -1,4 +1,4 @@
-import pygame,math,perso
+import pygame,math,perso,random
 class Monstre():
     def __init__(self,coordonnees: tuple,fenetre: pygame.Surface,game) -> None:
         self.coordonnees = coordonnees
@@ -10,9 +10,10 @@ class Monstre():
         self.score = 50
         self.all_projectiles = pygame.sprite.Group()
         # Vitesse doit etre supérieur à 1 pour éviter les bugs
-        self.velocity = 3
+        self.velocity = random.randint(3,5)
+        images = ["assets/bleu.png","assets/vert.png","assets/gris.png"]
         # le self velocity correspond a la vitesse de deplacement en pixel
-        self.image = pygame.image.load('assets/Goblin_Epee.png')
+        self.image = pygame.image.load(random.choice(images))
         self.rect = self.image.get_rect()
         self.rect = self.rect.move(self.coordonnees[0],self.coordonnees[1])
         # On ajoute le monstre à la liste des monstres

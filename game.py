@@ -26,7 +26,7 @@ class Game:
         print("La partie a recommencée")
 
     def spawnMonster(self,fenetre):
-        delai = 1
+        delai = 2
         if ( (self.time - self.lastSpawn) > delai and not self.spawned):
             cote = random.choice(["gauche","droite","bas","haut"])
             if cote == "gauche":

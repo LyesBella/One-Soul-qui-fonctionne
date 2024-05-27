@@ -51,9 +51,7 @@ while running:
             pygame.quit()
 
         if event.type==pygame.KEYDOWN:
-            game.pressed[event.key]= True
-            if event.key == pygame.K_SPACE:
-                game.player.launch_projectile(game)
+            game.pressed[event.key]= True   
             # A supprimer
             if event.key == pygame.K_a:
                 game.reset()
@@ -61,7 +59,8 @@ while running:
         # Permet de check si une touche est toujours enfoncé
         if event.type==pygame.KEYUP:
             game.pressed[event.key]= False
-
+        if event.type == pygame.MOUSEBUTTONUP:
+            game.player.launch_projectile(game)
     # Bouger le joueur en fonction des contrôles
     if game.pressed.get(pygame.K_RIGHT) or game.pressed.get(pygame.K_d):
         game.player.move("right",game.player.velocity)
