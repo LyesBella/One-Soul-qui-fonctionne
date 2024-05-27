@@ -31,14 +31,17 @@ while running:
         # On vérifie les collisions
         if (game.player.rect.colliderect(monster.rect)):
             monster.attack(game.player,game)
+            
+        # On met a jour l'affichage des monstres
         screen.blit(monster.image,(monster.rect))
     for projectile in game.projectiles:
         projectile.move()
+        # Complexité quadratique (pas bien)
         for monster in game.monsters:
             if(projectile.rect.colliderect(monster.rect)):
                 projectile.onDeath(game)
                 monster.onDeath(game.player,game)
-
+        # On met à jour l'affichage des projectiles
         screen.blit(projectile.image,projectile.rect)
     if (game.player.health <= 0 and game.player.isDead == False):
         game.player.onDeath()
@@ -46,6 +49,7 @@ while running:
 
     # Rafraichir l'ecran de jeux
     pygame.display.flip()
+    # les events
     for event in pygame.event.get():
         if event.type== pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
             running= False
