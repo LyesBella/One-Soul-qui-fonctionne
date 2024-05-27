@@ -12,6 +12,8 @@ class Game:
         self.time = time.time()
         self.player =Player()
         self.pressed={}
+        self.lastSpawn = 0
+        self.spawned:bool = False
 
     def reset(self):
         print("La partie va recommencer")
@@ -23,12 +25,20 @@ class Game:
         print("La partie a recommencée")
 
     def spawnMonster(self,fenetre):
-        cote = random.choice(["gauche","droite","bas","haut"])
-        if cote == "gauche":
-            monstre.Monstre((0,random.randint(0,700)),fenetre,self)
-        if cote == "droite":
-            monstre.Monstre((1280,random.randint(0,700)),fenetre,self)
-        if cote == "haut":
-            monstre.Monstre((random.randint(0,1280),0),fenetre,self)
-        if cote == "bas":
-            monstre.Monstre((random.randint(0,1280),700),fenetre,self)
+        delai = 1
+        if ( (self.time - self.lastSpawn) > delai and not self.spawned):
+            cote = random.choice(["gauche","droite","bas","haut"])
+            if cote == "gauche":
+                monstre.Monstre((0,random.randint(0,700)),fenetre,self)
+            if cote == "droite":
+                monstre.Monstre((1280,random.randint(0,700)),fenetre,self)
+            if cote == "haut":
+                monstre.Monstre((random.randint(0,1280),0),fenetre,self)
+            if cote == "bas":
+                monstre.Monstre((random.randint(0,1280),700),fenetre,self)
+            print("apparition")
+            self.lastSpawn = self.time
+            self.spawned = True
+        elif ((self.time - self.lastSpawn) > delai):
+            self.spawned = False
+            

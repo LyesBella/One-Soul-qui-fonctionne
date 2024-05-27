@@ -23,7 +23,8 @@ while running:
     screen.blit(background, (0,0))
     screen.blit(game.player.image,(game.player.rect))
     game.player.all_projectiles.draw(screen)
-
+    # Fait apparaitre les monstres sur l'écran
+    game.spawnMonster(fenetre=screen)
     for monster in game.monsters:
         screen.blit(monster.image,(monster.rect))
         # Va vers le joueur
@@ -54,8 +55,8 @@ while running:
             # A supprimer
             if event.key == pygame.K_a:
                 game.reset()
-            if event.key == pygame.K_r:
-                game.spawnMonster(fenetre=screen)
+
+                
         # Permet de check si une touche est toujours enfoncé
         if event.type==pygame.KEYUP:
             game.pressed[event.key]= False
