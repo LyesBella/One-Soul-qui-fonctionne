@@ -2,8 +2,6 @@ import pygame,math,perso,random
 class Monstre():
     def __init__(self,coordonnees: tuple,fenetre: pygame.Surface,game) -> None:
         self.coordonnees = coordonnees
-        self.health = 250
-        self.max_health = self.health
         self.degats = 3
         self.attack_speed = 1
         self.lastAttack = 0

@@ -26,18 +26,19 @@ while running:
     # Fait apparaitre les monstres sur l'écran
     game.spawnMonster(fenetre=screen)
     for monster in game.monsters:
-        screen.blit(monster.image,(monster.rect))
         # Va vers le joueur
         monster.gotoPlayer(game)
         # On vérifie les collisions
         if (game.player.rect.colliderect(monster.rect)):
             monster.attack(game.player,game)
-        # Est ce que le monstre est mort ?
-        if (monster.health <= 0):
-            monster.onDeath(game.player,game)
-            print(game.player.score) 
+        screen.blit(monster.image,(monster.rect))
     for projectile in game.projectiles:
         projectile.move()
+        for monster in game.monsters:
+            if(projectile.rect.colliderect(monster.rect)):
+                projectile.onDeath(game)
+                monster.onDeath(game.player,game)
+
         screen.blit(projectile.image,projectile.rect)
     if (game.player.health <= 0 and game.player.isDead == False):
         game.player.onDeath()

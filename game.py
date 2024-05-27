@@ -1,6 +1,6 @@
 import Score.score
 from perso import Player
-import time,random,monstre,Score
+import time,random,monstre,Score,pygame
 
 
 class Game:
@@ -24,6 +24,9 @@ class Game:
         self.startTime = time.time()
         self.gameDuration = 0
         print("La partie a recommencée")
+        
+    def check_collision(self,sprite,group):
+        return pygame.sprite.spritecollide(sprite,group,False,pygame.sprite.collide_mask)
 
     def spawnMonster(self,fenetre):
         delai = 2
