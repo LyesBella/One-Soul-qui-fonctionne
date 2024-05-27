@@ -5,6 +5,7 @@ import time,random,monstre,Score
 
 class Game:
     monsters = []
+    projectiles = []
     deltaTime = 0
     startTime = time.time()
     gameDuration = startTime - time.time()

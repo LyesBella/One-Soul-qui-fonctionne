@@ -15,8 +15,8 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.image.load('assets/Joueur.png')
         self.rect = self.image.get_rect()
         self.all_projectiles = pygame.sprite.Group()
-    def launch_projectile(self):
-        self.all_projectiles.add(Projectile(self))
+    def launch_projectile(self,game):
+        Projectile(self,game)
 
     def move(self,direction,speed):
         if direction == "right":

@@ -36,6 +36,9 @@ while running:
         if (monster.health <= 0):
             monster.onDeath(game.player,game)
             print(game.player.score) 
+    for projectile in game.projectiles:
+        projectile.move()
+        screen.blit(projectile.image,projectile.rect)
     if (game.player.health <= 0 and game.player.isDead == False):
         game.player.onDeath()
         game.reset()
@@ -50,13 +53,11 @@ while running:
         if event.type==pygame.KEYDOWN:
             game.pressed[event.key]= True
             if event.key == pygame.K_SPACE:
-                game.player.launch_projectile()
-
+                game.player.launch_projectile(game)
             # A supprimer
             if event.key == pygame.K_a:
                 game.reset()
 
-                
         # Permet de check si une touche est toujours enfoncé
         if event.type==pygame.KEYUP:
             game.pressed[event.key]= False
