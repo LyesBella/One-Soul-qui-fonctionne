@@ -31,7 +31,6 @@ while running:
         # On vérifie les collisions
         if (game.player.rect.colliderect(monster.rect)):
             monster.attack(game.player,game)
-            
         # On met a jour l'affichage des monstres
         screen.blit(monster.image,(monster.rect))
     for projectile in game.projectiles:

@@ -30,7 +30,7 @@ class Game:
 
     def spawnMonster(self,fenetre):
         delai = 2
-        if ( (self.time - self.lastSpawn) > delai and not self.spawned):
+        if ( (self.time - self.lastSpawn) > delai and not self.spawned and self.gameDuration > 10):
             for i in range(random.randint(1,6)):
                 cote = random.choice(["gauche","droite","bas","haut"])
                 if cote == "gauche":
