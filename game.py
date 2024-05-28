@@ -20,6 +20,7 @@ class Game:
         print("La partie va recommencer")
         Score.score.ajouterScore(self.player.name, self.player.score, self.gameDuration)
         self.monsters.clear()
+        self.projectiles.clear()
         self.player = Player()
         self.startTime = time.time()
         self.gameDuration = 0

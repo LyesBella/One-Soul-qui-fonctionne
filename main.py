@@ -34,6 +34,7 @@ while running:
         # On met a jour l'affichage des monstres
         screen.blit(monster.image,(monster.rect))
     for projectile in game.projectiles:
+        projectile.check_death(game)
         projectile.move()
         # Complexité quadratique (pas bien)
         for monster in game.monsters:

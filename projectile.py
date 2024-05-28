@@ -1,3 +1,5 @@
+import time
+
 import pygame,math
 
 class Projectile(pygame.sprite.Sprite):
@@ -9,6 +11,7 @@ class Projectile(pygame.sprite.Sprite):
         self.rect=self.image.get_rect()
         self.rect.x= player.rect.x
         self.rect.y= player.rect.y
+        self.spawntime= time.time()
         direction = pygame.mouse.get_pos()
         
         self.objectif_x = direction[0]  - self.rect.x
@@ -22,8 +25,13 @@ class Projectile(pygame.sprite.Sprite):
         game.projectiles.append(self)
     
     def onDeath(self,game):
-        game.projectiles.remove(self)
+        if self in game.projectiles:
+            game.projectiles.remove(self)
     
     def move(self):
         self.rect.move_ip(self.objectif_x, self.objectif_y)
 
+    def check_death(self,game):
+        if(time.time()>(self.spawntime+5)):
+            #self.remove(self)
+            self.onDeath(game)
