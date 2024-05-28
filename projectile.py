@@ -3,7 +3,7 @@ import time
 import pygame,math
 
 class Projectile(pygame.sprite.Sprite):
-    def __init__(self,player,game):
+    def __init__(self,player,game,direction):
         super().__init__()
         self.velocity = 8
         self.image= pygame.image.load('assets/projectile.png')
@@ -12,7 +12,6 @@ class Projectile(pygame.sprite.Sprite):
         self.rect.x= player.rect.x
         self.rect.y= player.rect.y
         self.spawntime= time.time()
-        direction = pygame.mouse.get_pos()
         
         self.objectif_x = direction[0]  - self.rect.x
         self.objectif_y = direction[1]  - self.rect.y

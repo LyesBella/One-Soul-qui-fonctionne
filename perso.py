@@ -17,7 +17,7 @@ class Player(pygame.sprite.Sprite):
         self.rect.move_ip(620,350)
         self.all_projectiles = pygame.sprite.Group()
     def launch_projectile(self,game):
-        Projectile(self,game)
+        Projectile(self,game,pygame.mouse.get_pos())
 
     def move(self,direction,speed):
         if direction == "right":
@@ -28,6 +28,5 @@ class Player(pygame.sprite.Sprite):
             self.rect.y -= speed
         elif direction == "down":
             self.rect.y += speed
-
     def onDeath(self):
         self.isDead = True
