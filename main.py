@@ -64,8 +64,9 @@ while running:
         # Permet de check si une touche est toujours enfoncé
         if event.type==pygame.KEYUP:
             game.pressed[event.key]= False
-        if event.type == pygame.MOUSEBUTTONUP:
-            game.player.launch_projectile(game)
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if pygame.mouse.get_pressed()[0]:
+                game.player.launch_projectile(game)
     # Bouger le joueur en fonction des contrôles
     if game.pressed.get(pygame.K_RIGHT) or game.pressed.get(pygame.K_d):
         game.player.move("right",game.player.velocity)

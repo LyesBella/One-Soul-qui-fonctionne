@@ -3,7 +3,7 @@ import pygame
 surfaceW = 800  # Dimension de la fenêtre / Largeur
 surfaceH = 600  # Dimension de la fenêtre / Longueur
 
-
+# à faire encore
 class Menu:
     """ Création et gestion des boutons d'un menu """
 
