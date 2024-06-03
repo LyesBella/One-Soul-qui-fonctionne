@@ -4,14 +4,15 @@ import time,random,monstre,Score,pygame,math
 
 
 class Game:
-    monsters = []
-    projectiles = []
-    deltaTime = 0
-    startTime = time.time()
-    gameDuration = startTime - time.time()
     def __init__(self):
-        self.time = time.time()
-        self.player =Player()
+        self.monsters = []
+        self.projectiles = []
+        self.deltaTime = 0
+        self.startTime = time.time()
+        self.gameDuration = self.startTime - time.time()
+        
+        self.time = self.startTime
+        self.player = Player()
         self.pressed = {}
         self.lastSpawn:int = 0
         self.spawned:bool = False
