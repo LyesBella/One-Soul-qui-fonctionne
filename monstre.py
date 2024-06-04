@@ -3,8 +3,8 @@ class Monstre():
     lastAttack = 0
     def __init__(self,coordonnees: tuple,fenetre: pygame.Surface,game) -> None:
         self.coordonnees = coordonnees
-        self.degats = 3
-        self.attack_speed = 1
+        self.degats = 1
+        self.attack_speed = 5
         self.score = random.randint(50,75)
         self.all_projectiles = pygame.sprite.Group()
         # Vitesse doit etre supérieur à 1 pour éviter les bugs

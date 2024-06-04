@@ -5,7 +5,7 @@ class Player(pygame.sprite.Sprite):
         super().__init__()
         # la ligne au dessus permet de declarer le personnage comme un sprite
         self.name = "player"
-        self.health = 150
+        self.health = 4
         self.max_health = self.health 
         self.attack = 25
         self.velocity = 4
